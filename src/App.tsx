@@ -11,8 +11,6 @@ function Pokemon() {
     return axios
       .get("https://pokeapi.co/api/v2/pokemon")
       .then((res: AxiosResponse<any>) => res.data.results);
-  }, {
-    refetchOnWindowFocus: false
   });
   return (
     <div>
@@ -23,6 +21,9 @@ function Pokemon() {
           <div key={result.name}>{result.name}</div>
         ))
       )}
+      {
+        queryInfo.isRefetching ? 'updating...' : null
+      }
     </div>
   );
 }
